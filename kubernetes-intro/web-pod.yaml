@@ -1,7 +1,7 @@
 apiVersion: v1 # Версия API
 kind: Pod # Объект, который создаем
 metadata:
-  name: simple-web-server # Название Pod
+  name: web # Название Pod
   labels: # Метки в формате key: value
     web: simple
 spec: # Описание Pod

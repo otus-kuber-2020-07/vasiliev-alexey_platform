@@ -2,4 +2,4 @@
 
 
 
-### 1. [Знакомство с Kubernetes, основные понятия и архитектура](kubernetes-intro/README.md)
+### 1. [Знакомство с Kubernetes, основные понятия и архитектура](kubernetes-intro/README.md) [![Build Status](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-intro)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform)
