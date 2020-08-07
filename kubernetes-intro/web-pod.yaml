@@ -6,7 +6,7 @@ metadata:
     web: simple
 spec: # Описание Pod
   containers: # Описание контейнеров внутри Pod
-  - name: simple-web-server # Название контейнера
+  - name: web # А в методичке нет указания называть именно так
     image: avasiliev/web:1.0 # Образ из которого создается контейнер
     volumeMounts:
     - name: app
