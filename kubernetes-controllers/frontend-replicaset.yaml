@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend  
+  labels:
+    app: frontend
+
+
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: server
+          image: avasiliev/hipster-frontend:1.0
+          env:
+          - name: PRODUCT_CATALOG_SERVICE_ADDR
+            value: "dummy-host"  
+          - name: CURRENCY_SERVICE_ADDR
+            value: "dummy-host"   
+          - name: CART_SERVICE_ADDR
+            value: "dummy-host"  
+          - name: RECOMMENDATION_SERVICE_ADDR
+            value: "dummy-host"            
+          - name: CHECKOUT_SERVICE_ADDR
+            value: "dummy-host"          
+          - name: SHIPPING_SERVICE_ADDR
+            value: "dummy-host"          
+          - name: AD_SERVICE_ADDR
+            value: "dummy-host"  
