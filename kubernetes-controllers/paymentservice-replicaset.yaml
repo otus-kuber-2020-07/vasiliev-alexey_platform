@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: paymentservice  
+  labels:
+    app: paymentservice
+
+
+spec:
+  selector:
+    matchLabels:
+      app: paymentservice
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      containers:
+        - name: server
+          image: avasiliev/paymentservice:1.0
+          
