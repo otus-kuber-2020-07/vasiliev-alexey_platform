@@ -5,3 +5,5 @@
 ### 1. [Знакомство с Kubernetes, основные понятия и архитектура](kubernetes-intro/README.md) [![Build Status](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-intro)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform)
 
 ### 2. [Механика запуска и взаимодействия контейнеров в Kubernetes](kubernetes-controllers/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-controllers)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+
+### 3. [Безопасность и управление доступом в Kubernetes](kubernetes-security/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-security)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
