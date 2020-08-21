@@ -6,18 +6,27 @@ metadata:
     web: simple
 spec: # Описание Pod
   containers: # Описание контейнеров внутри Pod
-  - name: web # А в методичке нет указания называть именно так
-    image: avasiliev/web:1.0 # Образ из которого создается контейнер
-    volumeMounts:
-    - name: app
-      mountPath: /app
+    - name: web # А в методичке нет указания называть именно так
+      image: avasiliev/web:1.0 # Образ из которого создается контейнер
+      readinessProbe:
+        # Добавимп роверку готовности
+        httpGet: # веб-сервера отдавать
+          path: /index.html # контент
+          port: 80
+      livenessProbe:
+        tcpSocket: 
+          port: 8000
+
+      volumeMounts:
+        - name: app
+          mountPath: /app
   initContainers:
-  - name: init-web
-    image: busybox:1.32
-    volumeMounts:
-    - name: app
-      mountPath: /app
-    command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']    
+    - name: init-web
+      image: busybox:1.32
+      volumeMounts:
+        - name: app
+          mountPath: /app
+      command: ["sh", "-c", "wget -O- https://tinyurl.com/otus-k8s-intro | sh"]
   volumes:
-  - name: app
-    emptyDir: {}
+    - name: app
+      emptyDir: {}
