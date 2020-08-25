@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prod
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 0 
+      maxSurge: 100%
+  template:
+    metadata:
+      name: prod # Название Pod
+      labels: # Метки в формате key: value
+        app: prod
+    spec: # Описание Pod
+      containers: # Описание контейнеров внутри Pod
+        - name: stage # А в методичке нет указания называть именно так
+          image: avasiliev/web:1.0 # Образ из которого создается контейнер
+          readinessProbe:
+            # Добавимп роверку готовности
+            httpGet: # веб-сервера отдавать
+              path: /index.html # контент
+              port: 8000
+          livenessProbe:
+            tcpSocket: 
+              port: 8000
+
+          volumeMounts:
+            - name: app
+              mountPath: /app
+      initContainers:
+        - name: init-web
+          image: busybox:1.32
+          volumeMounts:
+            - name: app
+              mountPath: /app
+          command: ["sh", "-c", "wget -O- https://tinyurl.com/otus-k8s-intro | sh"]
+      volumes:
+        - name: app
+          emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod
+spec:
+  selector:
+    app: prod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
