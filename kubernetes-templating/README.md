@@ -1,62 +1,72 @@
-# Заметки по выполнению домашней работы по теме "Безопасность и управление доступом"
-
+# Заметки по выполнению домашней работы по теме "Шаблонизация манифестов. Helm и его аналоги (Jsonnet, Kustomize)"
 
 ## Создаем инфраструктуру в GKE
 
 ~~~ sh
+export TF_VAR_project_name=XXX
 cd infra && terraform apply -auto-approve
 ~~~
 
-## установка nginx-ingress через Helm chart
+## установка nginx-ingress   cert-manager  chartmuseum harbor
+
+Устанавливаем  внешний IP, полученный в GKE  из [terraform output](../infra/outputs.tf) (loadBalancerIP)
 
 ~~~ sh
-helm upgrade --install nginx-ingress stable/nginx-ingress --wait   --namespace=nginx-ingress   --version=1.41.3 --create-namespace
+export TF_VAR_project_name=XXX
+cd tf-provisioner && terraform apply -auto-approve
 ~~~
 
-## установка cert-manager
-* добавим репозиторий
-~~~ sh
-helm repo add jetstack https://charts.jetstack.io
-~~~
-
-* Создадим CRD  для установки
-  
-~~~ sh
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.16.1/cert-manager.crds.yaml 
-~~~
-
-* Установим cert-manager -в инструкцию надо создать NS или добавить 
-~~~ sh
-helm upgrade --install cert-manager jetstack/cert-manager --wait   --namespace=cert-manager   --version=0.16.1  --create-namespace
-~~~
-
-* Создадим [ClusterIssuer](cert-manager/clusterissuer.yaml) для выпуска сертификатов
-  
-~~~ yaml
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-prod
-spec:
-  acme:
-    email: nomail@mail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    solvers: 
-    - http01:
-        ingress:
-          class: nginx
-~~~
-
-
-## Устновка chartmuseum
-Создадим файл с [параметрами установки](chartmuseum/values.yaml)
-
-Задеплоим чарт
+Все задеплоится само через  terraform-provider-helm  само и будет доступно
 
 ~~~ sh
-helm upgrade --install chartmuseum stable/chartmuseum --wait    --namespace=chartmuseum    --version=2.13.2   -f chartmuseum/values.yaml  --create-namespace
+export INGRESS_IP=$(kubectl get svc nginx-nginx-ingress-controller -n nginx-ingress -o=jsonpath='{.status.loadBalancer.ingress[0].ip}')
+curl https://chartmuseum.$INGRESS_IP.nip.io
+curl https://harbor.$INGRESS_IP.nip.io
 ~~~
 
-## harbor
+### Задание со ⭐ Научитесь работать с chartmuseum
+
+ chartmuseum - по сути простой веб сервис и [инструкция](https://chartmuseum.com/docs/#uploading-a-chart-package)  изложена на офицальном сайте.
+
+### Используем helmfile | Задание со ⭐
+
+ Почитал про helmfile - понял что, это все я проделал в файле [terraform](tf-provisioner/main.tf) - все тот же DSL, но на YAML, а у меня на HCL
+
+## Создаем свой helm chart
+
+ Создали по шаблону свой чарт
+
+~~~ sh
+helm create kubernetes-templating/frontend39/72
+
+~~~
+
+И на основе заготовки создали свой чарт для фронта.
+
+### Создаем свой helm chart | Задание со ⭐
+
+В [Chart.yaml](hipster-shop/Chart.yaml) - добавлен установка Redis из комьюнити чарта
+
+## Kubecfg
+
+* Вынесли еще 2 сервиса paymentservice и shippingservice в отдельные сервисы
+* Загрузили библиотеку для генерации манифестов [libsonnet](kubecfg/kube.libsonnet)  и немного ее допилили.
+* создали шаблон генерации манифестов [services.jsonnet](kubecfg/services.jsonnet)
+* сгенерировали манифесты и применили
+
+~~~ sh
+kubecfg update services.jsonnet --namespace hipster-shop
+~~~
+
+## Kustomize
+
+* выпилили сервис currencyservice
+* создали структуру каталогов для base и overrides
+* используя утилиту kustomize добавили ресурсы в kustomization.yaml
+
+~~~ sh
+kustomize edit add resource  ./currencyservice-service.yaml
+~~~
+
+* переопределили часть атрибутов из [списка возможных](https://github.com/kubernetes-sigs/kustomize)
+* применили манифесты для окружения  prod
