@@ -10,5 +10,6 @@
 
 ### 4. [Сетевое взаимодействие Pod, сервисы](kubernetes-networks/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-networks)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
 
-
 ### 5. [Хранение данных в Kubernetes: Volumes, Storages, Statefull-приложения](kubernetes-volumes/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-volumes)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+
+### 6. [Шаблонизация манифестов. Helm и его аналоги (Jsonnet, Kustomize)](kubernetes-networks/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-templating)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
