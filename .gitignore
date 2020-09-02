@@ -7,3 +7,5 @@ configs/
 *.tfvars
 *.lock.info
 .terraform/
+
+kubernetes-operators/build/env
