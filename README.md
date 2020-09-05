@@ -16,5 +16,5 @@
 
 ### 7. [Custom Resource Definitions. Operators](kubernetes-operators/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-operators)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
 
-### 7. [Мониторинг компонентов кластера и приложений, работающих в нем](kubernetes-monitoring/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-monitoring)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+### 8. [Мониторинг компонентов кластера и приложений, работающих в нем](kubernetes-monitoring/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-monitoring)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
 
