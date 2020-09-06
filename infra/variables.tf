@@ -23,5 +23,5 @@ variable "dns_zone_name" {
 
 
 variable "machine_type" {
-  default = "n1-standard-4"
+  default = "e2-standard-4"
 }
