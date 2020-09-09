@@ -18,3 +18,5 @@
 
 ### 8. [Мониторинг компонентов кластера и приложений, работающих в нем](kubernetes-monitoring/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-monitoring)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
 
+### 9. [Сервисы централизованного логирования для компонентов Kubernetes и приложений](kubernetes-logging/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-logging)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+
