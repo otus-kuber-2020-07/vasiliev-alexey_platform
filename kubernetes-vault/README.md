@@ -1,9 +1,9 @@
-# Заметки по выполнению домашней работы по теме "Хранилище секретов для приложений. Vault"
+# Заметки по выполнению домашней работы по теме "Hashicorp Vault +K8s"
 
-##  Создаем кластер в minikube
+##  Создаем кластер в GKE
 
 ``` sh
-minikube start
+cd ./infra  && terraform  apply -auto-approve 
 ```
 
 ## Инсталляция hashicorp vault HA в k8s 
@@ -312,7 +312,10 @@ kubectl exec -it vault-0 -- vault write pki_int/roles/example-dot-ru allowed_dom
 kubectl exec -it vault-0 -- vault write pki_int/issue/example-dot-ru common_name="gitlab.example.ru" ttl="24h"
 ```
 
-``` yaml
+<details>
+ <summary>Цепочка сертификатов</summary>
+
+  ```javascript
 Key                 Value
 ---                 -----
 ca_chain            [-----BEGIN CERTIFICATE-----
@@ -411,6 +414,7 @@ CkXL+65WzShSDc7T3Yo682xgubGR4oSore9Q7gALskzG/vJYG88=
 private_key_type    rsa
 serial_number       65:14:fe:d9:61:63:0e:80:61:db:3a:a1:4a:ba:2b:84:2c:88:4a:cf
 ```
+</details>
 
  
 ``` sh
