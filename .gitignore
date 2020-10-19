@@ -10,4 +10,4 @@ configs/
 
 kubernetes-operators/build/env
 
-kubernetes-gitops/flagger/dev.log
+**/dev.log

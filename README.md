@@ -20,3 +20,6 @@
 
 ### 9. [Сервисы централизованного логирования для компонентов Kubernetes и приложений](kubernetes-logging/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-logging)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
 
+### 10. [GitOps и инструменты поставки](kubernetes-gitops/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-gitops)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+
+### 11. [Хранилище секретов для приложений. Vault](kubernetes-vault/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=ubernetes-vault)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
