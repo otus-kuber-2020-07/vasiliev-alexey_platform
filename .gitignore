@@ -11,3 +11,5 @@ configs/
 kubernetes-operators/build/env
 
 **/dev.log
+
+*.log
