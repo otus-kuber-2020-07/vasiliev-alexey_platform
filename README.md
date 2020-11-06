@@ -28,3 +28,5 @@
 
 
 ### 13. [Диагностика и отладка кластера и приложений в нем](kubernetes-debug/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-debug)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
+
+### 14. [ Подходы к развертыванию и обновлению production-grade кластера ](kubernetes-production-clusters/README.md) [![Проверка](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform.svg?branch=kubernetes-production-clusters)](https://travis-ci.com/otus-kuber-2020-07/vasiliev-alexey_platform))
