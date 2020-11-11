@@ -13,3 +13,5 @@ kubernetes-operators/build/env
 **/dev.log
 
 *.log
+!kubernetes-production-clusters/kubesparay/inventory.ini
+#kubernetes-production-clusters/kubesparay/*
